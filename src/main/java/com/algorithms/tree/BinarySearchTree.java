@@ -27,8 +27,6 @@ public class BinarySearchTree {
             return;
         }
 
-        HashMap m;
-        TreeMap o;
         Node current = root;
         Node parent;
         while (true) {
@@ -84,6 +82,10 @@ public class BinarySearchTree {
         preOrder(node.rightChild);
     }
 
+    /**
+     * 中序遍历
+     * @param node
+     */
     public void inOrder(Node node) {
         if(node == null) return;
 
@@ -92,6 +94,10 @@ public class BinarySearchTree {
         inOrder(node.rightChild);
     }
 
+    /**
+     * 后序遍历
+     * @param node
+     */
     public void postOrder(Node node) {
         if(node == null) return;
         postOrder(node.leftChild);
