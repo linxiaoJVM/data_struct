@@ -71,6 +71,35 @@ public class BinarySearchTree {
     }
 
     /**
+     * 删除一个值，有三种情况：
+     * 1：没有子节点，把当前节点的父节点引用改为null
+     * 2：有一个子节点，把当前节点的子节点链接到他的父节点上
+     * 3：有两个子节点，最复杂。把当前节点的右子节点当做一颗树，找这棵树的最小值，用最小值替换当前值。
+     * @param data
+     * @return
+     */
+    public boolean delete(int data) {
+        Node current = root;
+        Node parent;
+        boolean isLeftChild = true;
+        while (current.data != data) {
+            if(data < current.data) {
+                isLeftChild = true;
+                current = current.getLeftChild();
+            }else {
+                isLeftChild = false;
+                current = current.getRightChild();
+            }
+            //没有找到，返回空
+            if(current == null)
+                return false;
+        }
+
+
+
+    }
+
+    /**
      * 先序遍历
      * @param node
      */
