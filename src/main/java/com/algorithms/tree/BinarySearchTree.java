@@ -78,11 +78,13 @@ public class BinarySearchTree {
      * @param data
      * @return
      */
-    public boolean delete(int data) {
+    public void delete(int data) {
         Node current = root;
-        Node parent;
+        Node parent = root;
         boolean isLeftChild = true;
+
         while (current.data != data) {
+            parent = current;
             if(data < current.data) {
                 isLeftChild = true;
                 current = current.getLeftChild();
@@ -92,7 +94,39 @@ public class BinarySearchTree {
             }
             //没有找到，返回空
             if(current == null)
-                return false;
+                return ;
+        }
+
+        //没有子节点
+        if(current.leftChild == null && current.rightChild == null) {
+            if(current == root)
+                root = null;
+            else if (isLeftChild)
+                parent.leftChild = null;
+            else
+                parent.rightChild = null;
+        }
+        //只有一个子节点，无右子节点
+        else if (current.rightChild == null) {
+            if(current == root)
+                root = current.leftChild;
+            else if (isLeftChild)
+                parent.leftChild = current.leftChild;
+            else
+                parent.rightChild = current.leftChild;
+        }
+        //只有一个子节点，无左子节点
+        else if (current.leftChild == null) {
+            if (current == root)
+                root = current.rightChild;
+            else if (isLeftChild)
+                parent.leftChild = current.rightChild;
+            else
+                parent.rightChild = current.rightChild;
+        }
+        //有两个节点
+        else {
+
         }
 
 
